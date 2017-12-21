@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L3|' / Cmd |
  * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
- * |LGui/Hen|Z/Ctrl|X/Alt |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |./Alt |//Ctrl|Shift/MH|
+ * |SFT/Hen |Z/Ctrl|X/Alt |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |./Alt |//Ctrl|Shift/MH|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |Grv/L1|  L2  |AltShf| LGui | LAlt |                                       | RAlt | RGui |   [  |   ]  | ~L1  |
  *   `----------------------------------'                                       `----------------------------------'
@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_EQL,                 KC_1,         KC_2,           KC_3,   KC_4,   KC_5,   KC_DELT,
         KC_TAB,                 KC_Q,         KC_W,           KC_E,   KC_R,   KC_T,   TG(SYMB),
         KC_LCTL,                KC_A,         KC_S,           KC_D,   KC_F,   KC_G,
-        LGUI_T(KC_HENK),        LCTL_T(KC_Z), LALT_T(KC_X),   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
+        LSFT_T(KC_HENK),        LCTL_T(KC_Z), LALT_T(KC_X),   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
         LT(SYMB,KC_GRV),        TG(DVRK),     LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
                                               KC_LEFT, KC_RGHT,
                                                        KC_HOME,
