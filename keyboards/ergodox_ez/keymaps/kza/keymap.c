@@ -41,20 +41,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_EQL,                 KC_1,         KC_2,           KC_3,   KC_4,   KC_5,   KC_DELT,
-        KC_TAB,                 KC_Q,         KC_W,           KC_E,   KC_R,   KC_T,   TG(SYMB),
-        KC_LCTL,                KC_A,         KC_S,           KC_D,   KC_F,   KC_G,
-        LSFT_T(KC_HENK),        LCTL_T(KC_Z), LALT_T(KC_X),   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
-        LT(SYMB,KC_GRV),        TG(DVRK),     LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
+        KC_EQL,                 KC_1,         KC_2,           KC_3,    KC_4,   KC_5,   KC_DELT,
+        KC_TAB,                 KC_Q,         KC_W,           KC_E,    KC_R,   KC_T,   TG(SYMB),
+        KC_LCTL,                KC_A,         KC_S,           KC_D,    KC_F,   KC_G,
+        LSFT_T(KC_HENK),        LCTL_T(KC_Z), LALT_T(KC_X),   KC_C,    KC_V,   KC_B,   ALL_T(KC_NO),
+        LT(SYMB,KC_GRV),        TG(DVRK),     LALT(KC_LSFT),  KC_LGUI, KC_LALT,
                                               KC_LEFT, KC_RGHT,
                                                        KC_HOME,
                               LSFT_T(KC_SPC), KC_BSPC, KC_END,
         // right hand
-             KC_ESC,      KC_6,   KC_7,  KC_8,   KC_9,           KC_0,             KC_MINS,
-             TG(SYMB),    KC_Y,   KC_U,  KC_I,   KC_O,           KC_P,             KC_BSLS,
-                          KC_H,   KC_J,  KC_K,   KC_L,           LT(MDIA, KC_SCLN),GUI_T(KC_QUOT),
-             MEH_T(KC_NO),KC_N,   KC_M,  KC_COMM,RALT_T(KC_DOT), CTL_T(KC_SLSH),   RSFT_T(KC_MHEN),
-                                  KC_UP, KC_DOWN,KC_LBRC,KC_RBRC,          KC_FN1,
+             KC_ESC,      KC_6,   KC_7,    KC_8,   KC_9,           KC_0,             KC_MINS,
+             TG(SYMB),    KC_Y,   KC_U,    KC_I,   KC_O,           KC_P,             KC_BSLS,
+                          KC_H,   KC_J,    KC_K,   KC_L,           LT(MDIA, KC_SCLN),GUI_T(KC_QUOT),
+             MEH_T(KC_NO),KC_N,   KC_M,    KC_COMM,RALT_T(KC_DOT), CTL_T(KC_SLSH),   RSFT_T(KC_MHEN),
+                                  KC_LALT, KC_RGUI,KC_LBRC,KC_RBRC,          KC_FN1,
              KC_DOWN, KC_UP,
              KC_PGUP,
              KC_PGDN, KC_BSPC, KC_ENT
