@@ -6,7 +6,7 @@
 #define BASE 0 // default layer
 #define DVRK 1 // dvorak
 #define SYMB 2 // symbols
-#define MDIA 3 // symbols
+#define MDIA 3 // media
 #define GAME 4 // game
 
 enum custom_keycodes {
@@ -20,42 +20,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |    =   |   1  |   2  |   3  |   4  |   5  | ESC  |           | DEL  |   6  |   7  |   8  |   9  |   0  |   -    |
+ * |  ESC   |   1  |   2  |   3  |   4  |   5  | DVRK |           | DEL  |   6  |   7  |   8  |   9  |   0  |  Grv   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |  TAB   |   Q  |   W  |   E  |   R  |   T  | BASE |           | SYMB |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |' / L2  |
+ * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
  * |--------+------+------+------+------+------| MDIA |           | GAME |------+------+------+------+------+--------|
- * | LShift |Z/Ctrl|   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |= / SYMB|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Grv/L1| Undo |  C-x | LAlt | LGui |                                       | LEFT | DOWN |  UP  | RGHT |~SYMB |
+ *   |A+Grv | Undo |  C-x | LAlt | LGui |                                       |   -  | LEFT | DOWN |  UP  | RGHT |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | DVRK | PSCR |       |  [   |   ]  |
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      | Home |       | PgUp |        |      |
- *                                 |Space |Back  |------|       |------|Back    |Enter |
- *                                 |      |Space | End  |       | PgDn |Space   |      |
- *                                 `--------------------'       `----------------------'
+ *                                        | DEL  | PSCR |       |  [   |   ]  |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      | Home |       | PgUp |      |      |
+ *                                 |Space |Back  |------|       |------|Back  |Enter |
+ *                                 |      |Space | End  |       | PgDn |Space |      |
+ *                                 `--------------------'       `--------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_EQL,                 KC_1,                 KC_2,           KC_3,    KC_4,   KC_5,   KC_ESC,
+        KC_ESC,                 KC_1,                 KC_2,           KC_3,    KC_4,   KC_5,   TO(DVRK),
         KC_TAB,                 KC_Q,                 KC_W,           KC_E,    KC_R,   KC_T,   TO(BASE),
         KC_LCTL,                KC_A,                 KC_S,           KC_D,    KC_F,   KC_G,
-        KC_LSFT,                LCTL_T(KC_Z),         KC_X,           KC_C,    KC_V,   KC_B,   TO(MDIA),
-        LT(SYMB,KC_GRV),        KC_UNDO,              LCTL(KC_X),     KC_LALT, KC_LGUI,
-                                TO(DVRK),             KC_PSCR,
+        KC_LSFT,                KC_Z,                 KC_X,           KC_C,    KC_V,   KC_B,   TO(MDIA),
+        LALT(KC_GRV),           KC_UNDO,              LCTL(KC_X),     KC_LALT, KC_LGUI,
+                                KC_DELT,              KC_PSCR,
                                                       KC_HOME,
         KC_SPC,                 KC_BSPC,              KC_END,
         // right hand
-             KC_DELT,     KC_6,   KC_7,    KC_8,    KC_9,           KC_0,             KC_MINS,
+             KC_DELT,     KC_6,   KC_7,    KC_8,    KC_9,           KC_0,             KC_GRV,
              TO(SYMB),    KC_Y,   KC_U,    KC_I,    KC_O,           KC_P,             KC_BSLS,
-                          KC_H,   KC_J,    KC_K,    KC_L,           KC_SCLN,          LT(SYMB, KC_QUOT),
-             TO(GAME),    KC_N,   KC_M,    KC_COMM, KC_DOT,         KC_SLSH,          KC_RSFT,
-                                  KC_LEFT, KC_DOWN, KC_UP,          KC_RGHT,          KC_FN1,
+                          KC_H,   KC_J,    KC_K,    KC_L,           KC_SCLN,          KC_QUOT,
+             TO(GAME),    KC_N,   KC_M,    KC_COMM, KC_DOT,         KC_SLSH,          LT(SYMB, KC_EQL),
+                                  KC_MINS, KC_LEFT, KC_DOWN,        KC_UP,            KC_RGHT,
              KC_LBRC,     KC_RBRC, 
              KC_PGUP,
              KC_PGDN,     KC_BSPC,KC_ENT
