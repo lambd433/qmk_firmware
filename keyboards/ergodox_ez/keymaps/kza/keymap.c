@@ -2,12 +2,12 @@
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
+//#include "config.h"
 
 #define BASE 0 // default layer
 #define DVRK 1 // dvorak
 #define SYMB 2 // symbols
 #define MDIA 3 // media
-#define GAME 4 // game
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
@@ -20,18 +20,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |  ESC   |   1  |   2  |   3  |   4  |   5  | DVRK |           | DEL  |   6  |   7  |   8  |   9  |   0  |  Grv   |
+ * |  ESC   |   1  |   2  |   3  |   4  |   5  | MEH  |           |  DEL |   6  |   7  |   8  |   9  |   0  |  Grv   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |  TAB   |   Q  |   W  |   E  |   R  |   T  | BASE |           | SYMB |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |  TAB   |   Q  |   W  |   E  |   R  |   T  | BASE |           | SYMB |   Y  |   U  |   I  |   O  |   P  |\ /RCtrl|
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
- * |--------+------+------+------+------+------| MDIA |           | GAME |------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |= / SYMB|
+ * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |' / SYMB|
+ * |--------+------+------+------+------+------| MDIA |           | DVRK |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |= / RSFT|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |A+Grv | Undo |  C-x | LAlt | LGui |                                       |   -  | LEFT | DOWN |  UP  | RGHT |
+ *   | PSCR |  Ins |  NUM | LAlt | LGui |                                       |   -  | LEFT | DOWN |  UP  | RGHT |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | DEL  | PSCR |       |  [   |   ]  |
+ *                                        | LANG2|   [  |       |  ]   | LANG1|
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      | Home |       | PgUp |      |      |
  *                                 |Space |Back  |------|       |------|Back  |Enter |
@@ -42,21 +42,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_ESC,                 KC_1,                 KC_2,           KC_3,    KC_4,   KC_5,   TO(DVRK),
+        KC_ESC,                 KC_1,                 KC_2,           KC_3,    KC_4,   KC_5,   KC_MEH,
         KC_TAB,                 KC_Q,                 KC_W,           KC_E,    KC_R,   KC_T,   TO(BASE),
         KC_LCTL,                KC_A,                 KC_S,           KC_D,    KC_F,   KC_G,
         KC_LSFT,                KC_Z,                 KC_X,           KC_C,    KC_V,   KC_B,   TO(MDIA),
-        LALT(KC_GRV),           KC_UNDO,              LCTL(KC_X),     KC_LALT, KC_LGUI,
-                                KC_DELT,              KC_PSCR,
+        KC_PSCR,                KC_INS,               KC_NUM,         KC_LALT, KC_LGUI,
+                                KC_LNG2,              KC_LBRC,
                                                       KC_HOME,
         KC_SPC,                 KC_BSPC,              KC_END,
         // right hand
-             KC_DELT,     KC_6,   KC_7,    KC_8,    KC_9,           KC_0,             KC_GRV,
-             TO(SYMB),    KC_Y,   KC_U,    KC_I,    KC_O,           KC_P,             KC_BSLS,
-                          KC_H,   KC_J,    KC_K,    KC_L,           KC_SCLN,          KC_QUOT,
-             TO(GAME),    KC_N,   KC_M,    KC_COMM, KC_DOT,         KC_SLSH,          LT(SYMB, KC_EQL),
+             KC_DEL,      KC_6,   KC_7,    KC_8,    KC_9,           KC_0,             KC_GRV,
+             TO(SYMB),    KC_Y,   KC_U,    KC_I,    KC_O,           KC_P,             RCTL_T(KC_BSLS),
+                          KC_H,   KC_J,    KC_K,    KC_L,           KC_SCLN,          LT(SYMB, KC_QUOT),
+             TO(DVRK),    KC_N,   KC_M,    KC_COMM, KC_DOT,         KC_SLSH,          RSFT_T(KC_EQL),
                                   KC_MINS, KC_LEFT, KC_DOWN,        KC_UP,            KC_RGHT,
-             KC_LBRC,     KC_RBRC, 
+             KC_RBRC,     KC_LNG1, 
              KC_PGUP,
              KC_PGDN,     KC_BSPC,KC_ENT
     ),
@@ -153,11 +153,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 3: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | RESET  |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * | RESET  | REC1 | REC2 |      |      |      | RSTP |           | RSTP | PLY1 | PLY2 |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      | MsUp |      |      |      |           |      |      |      |      |      |      |        |
+ * |        |      | MsUp |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |MsLeft|MsDown|MsRght|      |------|           |------|      |      |      |      |      |  Play  |
+ * |        |MsLeft|MsDown|MsRght|      |      |------|           |------|      |      |      |      |      |  Play  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      |      | Prev | Next |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -173,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [MDIA] = LAYOUT_ergodox(
   // left hand
-  RESET,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  QK_RBT,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS,  KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS,  KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
   KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -190,49 +190,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TRNS, KC_TRNS,
   KC_TRNS,
   KC_TRNS, KC_TRNS, KC_WBAK
-),
-/* Keymap 4: Game layer
- *
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   ESC  |   1  |   2  |   3  |   4  |   5  |  =   |           | Del  |   6  |   7  |   8  |   9  |   0  |   -    |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |   TAB  |   Q  |   W  |   E  |   R  |   T  |  L0  |           |  L1  |   Y  |   U  |   I  |   O  |   P  |   \    |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L3|' / Cmd |
- * |--------+------+------+------+------+------|  [   |           |  ]   |------+------+------+------+------+--------|
- * | Shift  |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | Shift  |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Grv/L1|  L0  |AltShf| LGui | LAlt |                                       | LEFT | DOWN |  UP  |RIGHT | ~L1  |
- *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        | App  | RGHT |       | DOWN |  UP  |
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      | Home |       | PgUp |        |      |
- *                                 |Space |Backsp|------|       |------|Back    |Enter |
- *                                 |      |ace   | End  |       | PgDn |space   |      |
- *                                 `--------------------'       `----------------------'
- */
-// If it accepts an argument (i.e, is a function), it doesn't need KC_.
-// Otherwise, it needs KC_*
-[GAME] = LAYOUT_ergodox(  // layer 3 : game
-        // left hand
-        KC_ESC,                 KC_1,         KC_2,           KC_3,    KC_4,   KC_5,   KC_EQL,
-        KC_TAB,                 KC_Q,         KC_W,           KC_E,    KC_R,   KC_T,   TO(BASE),
-        KC_LCTL,                KC_A,         KC_S,           KC_D,    KC_F,   KC_G,
-        KC_LSFT,                KC_Z,         KC_X,           KC_C,    KC_V,   KC_B,   KC_LBRC,
-        LT(SYMB,KC_GRV),        TO(BASE),     LALT(KC_TAB),   KC_LGUI, KC_LALT,
-                                              KC_APP, KC_LGUI,
-                                                       KC_HOME,
-                                KC_SPC, KC_BSPC, KC_END,
-        // right hand
-             KC_DELT,      KC_6,   KC_7,    KC_8,   KC_9,   KC_0,             KC_MINS,
-             TG(SYMB),     KC_Y,   KC_U,    KC_I,   KC_O,   KC_P,             KC_BSLS,
-                           KC_H,   KC_J,    KC_K,   KC_L,   KC_SCLN,          KC_QUOT,
-             KC_RBRC,      KC_N,   KC_M,    KC_COMM,KC_DOT, KC_SLSH,          KC_RSFT,
-                           KC_LEFT,KC_DOWN, KC_UP,  KC_RGHT, KC_FN1,
-             KC_RALT, RCTL_T(KC_ESC),
-             KC_PGUP,
-             KC_PGDN, KC_BSPC, KC_ENT
 )
 };
 
@@ -240,6 +197,7 @@ const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 1 (Symbols)
 };
 
+/*
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
@@ -257,7 +215,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   }
   return MACRO_NONE;
 };
-
+*/
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     // dynamically generate these.
@@ -298,7 +256,8 @@ void matrix_scan_user(void) {
 };
 
 // Runs whenever there is a layer state change.
-uint32_t layer_state_set_user(uint32_t state) {
+
+layer_state_t layer_state_set_user(layer_state_t state) {
   ergodox_board_led_off();
   ergodox_right_led_1_off();
   ergodox_right_led_2_off();
@@ -310,7 +269,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         #ifdef RGBLIGHT_COLOR_LAYER_0
           rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
         #else
-          rgblight_init();
+//          rgblight_init();
         #endif
         break;
       case 1:
