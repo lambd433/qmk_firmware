@@ -1,6 +1,6 @@
 #ifndef USERSPACE
 #define USERSPACE
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 
 enum userspace_keycodes {
   QWERTY = SAFE_RANGE,
@@ -36,16 +36,13 @@ enum userspace_keycodes {
 #define _FNLAYER 6
 #define _NUMLAY 7
 #define _MOUSECURSOR 8
-#define _ADJUST 16
+#define _ADJUST 9
 
 
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
-// Fillers to make layering more clear
-#define _______ KC_TRNS
-#define XXXXXXX KC_NO
 // Custom macros
 #define CTL_ESC     CTL_T(KC_ESC)               // Tap for Esc, hold for Ctrl
 #define CTL_TTAB    CTL_T(KC_TAB)               // Tap for Esc, hold for Ctrl
@@ -228,7 +225,7 @@ NOTE: These are all the same length.  If you do a search/replace
 
 
 #define _________________ADJUST_L1_________________        RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG
-#define _________________ADJUST_L2_________________        MU_TOG , CK_TOGG, AU_ON,   AU_OFF,  AG_NORM
+#define _________________ADJUST_L2_________________        MU_TOGG, CK_TOGG, AU_ON,   AU_OFF,  AG_NORM
 #define _________________ADJUST_L3_________________        RGB_RMOD,RGB_HUD,RGB_SAD, RGB_VAD, KC_RGB_T
 
 #define _________________ADJUST_R1_________________        KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5

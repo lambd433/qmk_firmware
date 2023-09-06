@@ -1,7 +1,7 @@
 #ifndef USERSPACE
 #define USERSPACE
 
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 
 enum custom_keycodes {
   CK_SAFE = SAFE_RANGE,
@@ -11,7 +11,6 @@ enum custom_keycodes {
   NEW_SAFE_RANGE
 };
 
-#define _______ KC_TRNS
 #define KC_RGUP RGUP
 #define KC_RGDWN RGDWN
 #define KC_YREG YREG
