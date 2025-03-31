@@ -31,5 +31,6 @@
     "clangd.arguments": [
         "--header-insertion=never"
     ],
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "cmake.sourceDirectory": "C:/Users/kza/qmk_firmware/lib/lvgl/tests"
 }
